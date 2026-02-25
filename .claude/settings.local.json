@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh search repos:*)",
+      "Bash(curl:*)",
+      "Bash(jq:*)",
+      "Bash(gh api:*)"
+    ]
+  }
+}

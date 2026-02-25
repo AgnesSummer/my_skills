@@ -4,39 +4,85 @@
 
 ### 第一步：分析需求，生成搜索关键词
 
-根据用户描述的功能需求，拆解为 3-5 组精准的英文搜索关键词。关键词要具体、有区分度，避免过于宽泛。
+根据用户描述的功能需求，严格拆解为 **6 组英文搜索关键词**：
+- **3 组核心通用词**：只包含功能本质，不带任何筛选条件
+- **3 组特色需求词**：核心功能 + 本次特殊需求（无API、本地部署、免费、开源等）
 
-关键词生成原则：
+**分层生成原则：**
+
+| 层级 | 数量 | 用途 | 关键词特点 |
+|------|------|------|-----------|
+| **核心通用词** | 3组 | 捕获功能本质，扩大覆盖面 | 只描述"做什么"，**绝不带限定条件**（如without/free/selfhosted等）|
+| **特色需求词** | 3组 | 精确匹配特殊约束 | 核心功能 + 用户的特殊需求（无API、离线、本地、免费等）|
+
+**核心原则：**
 - 用该领域的专业英文术语
-- 每组关键词从不同角度切入
-- 包含具体技术方向，不要泛泛而谈
+- 每组关键词从不同角度切入（技术类型/功能描述/数据格式）
+- **核心通用词绝不带限定条件**，确保能捕获到描述中未写但实际符合的仓库
+- 特色需求词必须同时包含：核心功能术语 + 特殊约束
 
-示例：
+---
 
-用户说"Python Reddit 爬虫"：
-- "reddit scraper"
-- "reddit crawler "
-- "reddit data collection no auth"
+**示例：**
 
-用户说"PDF 发票自动识别提取"：
-- "invoice ocr pdf extract"
-- "receipt recognition chinese"
-- "pdf table extraction structured data"
+用户说"Python Reddit 爬虫，不需要官方API"：
+
+**核心通用词（3组）：**
+- "reddit scraper"                    ← 技术角度：scraper
+- "reddit crawler"                    ← 技术角度：crawler（不同术语）
+- "reddit data extraction"            ← 功能角度：数据提取
+
+**特色需求词（3组）：**
+- "reddit scraper without api"        ← 爬虫 + 无API
+- "reddit unofficial api"             ← Reddit + 非官方API
+- "reddit scraping no auth"           ← 抓取 + 无需认证
+
+---
+
+用户说"PDF 发票自动识别提取，要能识别中文"：
+
+**核心通用词（3组）：**
+- "invoice ocr"                       ← 技术角度：发票OCR
+- "pdf document parsing"              ← 技术角度：PDF文档解析
+- "receipt recognition"               ← 功能角度：收据识别
+
+**特色需求词（3组）：**
+- "invoice ocr chinese"               ← 发票OCR + 中文
+- "pdf table extraction asia"         ← PDF表格提取 + 亚洲语言
+- "receipt scanner multilingual"      ← 收据扫描 + 多语言
+
+---
 
 用户说"视频自动加字幕 语音转文字"：
-- "video subtitle generator automatic"
-- "speech to text srt whisper"
-- "auto caption video python"
 
-用户说"批量把 Word 转成 PDF"：
-- "docx to pdf batch convert python"
-- "word pdf converter library"
-- "document format conversion bulk"
+**核心通用词（3组）：**
+- "video subtitle generator"          ← 功能角度：字幕生成
+- "speech to text"                    ← 技术角度：语音转文字
+- "auto caption"                      ← 产品角度：自动字幕
+
+**特色需求词（3组）：**
+- "video subtitle whisper"            ← 字幕 + Whisper模型
+- "speech to text offline"            ← 语音转文字 + 离线
+- "auto caption local"                ← 自动字幕 + 本地运行
+
+---
+
+用户说"批量把 Word 转成 PDF，要支持命令行"：
+
+**核心通用词（3组）：**
+- "docx to pdf"                       ← 格式角度：Word转PDF
+- "document converter"                ← 功能角度：文档转换
+- "word pdf batch"                    ← 场景角度：批量处理
+
+**特色需求词（3组）：**
+- "docx pdf cli"                      ← Word转PDF + 命令行
+- "document converter python"         ← 文档转换 + Python（用户提到脚本）
+- "word to pdf api"                   ← Word转PDF + API接口
 ### 第二步：执行搜索
 
 对每组关键词执行以下命令：
 
-gh search repos "{关键词}" --sort=stars --limit=5 --json name,fullName,url,description,stargazersCount,updatedAt,language,licenseInfo
+gh search repos "{关键词}" --sort=stars --limit=5 --json name,fullName,url,description,stargazersCount,updatedAt,language,license
 
 如果用户指定了语言，加上 --language 参数。
 
